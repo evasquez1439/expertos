@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test de servicios</title>
+<link href="css/jquery-ui.css" rel="stylesheet">
+<link href="css/tabsStyle.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/tabs.js"></script>
+<script type="text/javascript">
+
+	function jack(){    
+	// 	var USERNAME='clientapp';
+	// 	var PASSWORD='123456';
+	    var results = $.ajax({
+	        // The URL to process the request
+	        url : '/webServExpertos/oauth/token',
+	        type : 'POST',
+	        data : {
+	           grant_type : 'client_credentials',
+	//             code : '123456',
+	//             client_id : 'clientapp',
+	//             client_secret : '123456'
+	        },
+	//         beforeSend: function (xhr) {
+	// xhr.setRequestHeader("Authorization", "Basic Y2xpZW50YXBwOjEyMzQ1Ng==")
+	// },
+			 headers: {
+			    "Authorization": "Basic Y2xpZW50RXhwZXJ0b3M6YzNueDN4OTNydDA1"//Esto es en base 64 client_id y client secret
+			  },
+	        dataType: "json",
+	        success: function(response) {
+	           //console.log(response);
+	           console.log(response.access_token);
+	           $('#token').val(response.access_token);
+	           //data.access_token = response.access_token;
+	           //tokenGranted();
+	        }, error: function(error){
+	            console.log(error);
+	        }
+	
+	    });
+	
+	    return results.responseText;
+	}
+
+	function ConsultaVisitantes(){
+		var token= $('#token').val();
+		var doc= $('#docVis').val();
+		var nombres= $('#nombVis').val();
+		var apellidos= $('#apelliVis').val();
+		var ubicacion= $('#ubiVis').val().toUpperCase();
+		
+		var results = $.ajax({
+
+	        // The URL to process the request
+	        url : '/webServExpertos/visitantes/getDatosVisitantes',
+	        type : 'POST',
+	        data : {
+	        	doc : doc,
+	        	nombres : nombres,
+	        	apellidos : apellidos,
+	        	ubicacion : ubicacion,
+	        },
+			headers: {
+			    "Authorization": "Bearer "+token//Esto es en base 64 client_id y client secret
+		    },
+	        dataType: "json",
+	        success: function(response) {
+	           $("#responseVisitantes").val( JSON.stringify(response, null, 4));
+	        }, error: function(error){
+	            console.log(error);
+	        }
+
+	    });
+		
+	}
+	
+</script>
+</head>
+<body>
+
+		<div class="main">
+			<h2>Pagina de Pruebas de Servicios</h2>
+			<div>
+				<p>
+					<input type="button" class="btn btn-default" id="reset" name="reset"  value="Obtener token" onclick="jack()"/>
+				</p>
+				<p>	
+					<textarea rows="4" cols="50" id="token"></textarea>
+				</p>			
+			</div>			
+			<div class="tabs standard">
+				<ul class="tab-links">
+					<li class="active">
+						<a href="#tab13">Datos Visitantes</a>
+					</li>				
+				</ul>
+				<div class="tab-content">
+					<div id="tab13" class="tab active">
+						<p>Documento: <input type="text" id="docVis"></p>
+						<p>Nombres: <input type="text" id="nombVis"></p>
+						<p>Apellidos: <input type="text" id="apelliVis"></p>
+						<p>Ubicacion: <input type="text" id="ubiVis"></p>
+						<p><input type="button" class="btn btn-default" id="consulVisitantes" name="consulVisitantes" value="Consultar" onclick="ConsultaVisitantes()"/></p>
+						<p><textarea rows="80" cols="50" id="responseVisitantes"></textarea></p>												
+					</div>
+				</div>
+			</div>
+		</div>
+		
+</body>
+</html>		

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RestAccreditationApplication<rest_accreditation>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "rest_accreditation.config.RestAccreditationApplication",
+            "projectName": "rest_accreditation",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
