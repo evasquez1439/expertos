@@ -1,3 +1,4 @@
+rest_accreditation\ConsultaVisitantes.class
 rest_accreditation\domain\Program.class
 rest_accreditation\util\Utils.class
 rest_accreditation\domain\SurgeryMovement.class
@@ -29,6 +30,7 @@ rest_accreditation\util\Constants.class
 rest_accreditation\config\OAuth2ServerConfiguration$AuthorizationServerConfiguration.class
 rest_accreditation\domain\Emergency.class
 rest_accreditation\domain\Anesthesia.class
+rest_accreditation\ServletInitializer.class
 rest_accreditation\repository\VisitantesRepository.class
 rest_accreditation\config\OAuth2ServerConfiguration.class
 rest_accreditation\exception\InvalidParameterException.class

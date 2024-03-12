@@ -103,19 +103,7 @@ public class RestAccreditationApplication {
 		return dataSource;
 	}
 
-	/**
-	 * Funci&oacute;n para configuraciones adicionales para tomcat puerto, duraci&oacute;n de
-	 * la sesi&oacute;n y ruta
-	 * 
-	 * @return factory
-	 */
-	@Bean
-public ConfigurableServletWebServerFactory servletContainer() {
-    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-    factory.setContextPath("/webServExpertos");
-    factory.setPort(8383);
-    return factory;
-}
+	
 	
 	/**
 	 * Funci&oacute;n para registrar en un contexto Spring un EntityManager

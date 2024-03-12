@@ -80,15 +80,15 @@ public class OAuth2ServerConfiguration {
 		public void configure(HttpSecurity http) throws Exception {
 			// @formatter:off
 			http
-			//.csrf().disable()
+			.csrf().disable()
 				//.authorizeRequests()				
 			  //.authorizeRequests().antMatchers("/cirugia.html").permitAll()
 			  .authorizeRequests().antMatchers("/principal.html").permitAll()
 			 // .anyRequest().authenticated();
 			  .anyRequest().hasAnyRole("TRUSTED_CLIENT");//Se le quita el prefijo ROLE_
 //				.authorizeRequests()
-//                .anyRequest().hasRole("USER");
-                //.and().antMatcher("/accreditation/cirugia.html");
+          //    .anyRequest().hasRole("USER")
+            //    .and().antMatcher("/accreditation/cirugia.html");
 					//.antMatchers("/users").hasRole("ADMIN")
 					//.antMatchers("/surgery/**","/surgery").hasRole("USER");
 			// @formatter:on
