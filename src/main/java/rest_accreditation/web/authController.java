@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import rest_accreditation.config.*;
+
+import rest_accreditation.SecurityAuth.AuthenticationResponse;
+import rest_accreditation.SecurityAuth.JwtUtil;
+import rest_accreditation.SecurityAuth.ProjectUserDetailsService;
+
 
 
 @RestController

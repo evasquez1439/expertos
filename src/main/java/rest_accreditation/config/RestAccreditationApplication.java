@@ -45,7 +45,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // Ldap y jpa deben estar en rutas diferentes
 @EntityScan(basePackages = { "rest_accreditation.domain" })
 @ComponentScan(basePackages = { "rest_accreditation.web",
-		"rest_accreditation.config" })
+		"rest_accreditation.config", "rest_accreditation.SecurityAoth" })
 @EnableAutoConfiguration
 
 @SpringBootApplication
