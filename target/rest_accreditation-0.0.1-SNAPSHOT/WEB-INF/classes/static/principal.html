@@ -8,14 +8,14 @@
 <script type="text/javascript">
 
 function jack() {
-    var username = 'clientapp'; // Nombre de usuario que deseas autenticar
+    var Authorization = 'Basic Y2xpZW50RXhwZXJ0b3M6YzNueDN4OTNydDA1'; // Nombre de usuario que deseas autenticar
 
     // Realizar la solicitud AJAX al endpoint /auth/authenticate
     var results = $.ajax({
         url: '/rest_accreditation-0.0.1-SNAPSHOT/auth/authenticate',
         type: 'POST',
         data: {
-            'username': username // Pasar el nombre de usuario como parte de los datos de la solicitud
+            'Authorization': Authorization // Pasar el nombre de usuario como parte de los datos de la solicitud
         },
         dataType: 'json', // Esperamos una respuesta JSON
         success: function(response) {

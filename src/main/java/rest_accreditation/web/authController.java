@@ -31,14 +31,18 @@ public class AuthController {
     private JwtUtil jwtUtil;
     
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<AuthenticationResponse> createToken(@RequestParam(value = "username") String username){
+    public ResponseEntity<AuthenticationResponse> createToken(@RequestParam(value = "Authorization") String Authorization){
 
         try {
             
-           // authenticationmanager.authenticate(new UsernamePasswordAuthenticationToken(username, password));         
-            UserDetails userDetails = projectUserDetailsService.loadUserByUsername(username);           
-            String jwt = jwtUtil.generateToken(userDetails);           
-            return new ResponseEntity<AuthenticationResponse>(new AuthenticationResponse("200",jwt),HttpStatus.OK);
+            if(Authorization.equals("Basic Y2xpZW50RXhwZXJ0b3M6YzNueDN4OTNydDA1")){
+                // authenticationmanager.authenticate(new UsernamePasswordAuthenticationToken(username, password));         
+                    UserDetails userDetails = projectUserDetailsService.loadUserByUsername("clientapp");           
+                    String jwt = jwtUtil.generateToken(userDetails);           
+                    return new ResponseEntity<AuthenticationResponse>(new AuthenticationResponse("200",jwt),HttpStatus.OK);}
+    
+                else
+                    return new ResponseEntity<AuthenticationResponse>(new AuthenticationResponse("401","Código de autenticacion incorrecto"),HttpStatus.OK);
         } catch (BadCredentialsException e) {           
             return new ResponseEntity<AuthenticationResponse>(new AuthenticationResponse("500","Error"),HttpStatus.BAD_GATEWAY);
         }
